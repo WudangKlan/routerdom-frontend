@@ -24,10 +24,14 @@ export async function loader() {
     //return {isError:true, message:'could not fetch event.'}
     //throw new Error({ message: "could not fetch event" });
     //throw { message: `could not fetch event` };
-    throw new Error()
+    //throw new Error()
+    throw new Response(JSON.stringify({ message: "Could not fetch events" }), {
+      status: 500,
+    });
   } else {
     // const resData = await response.json();
     // return resData.events;
     return response;
+  
   }
 }
