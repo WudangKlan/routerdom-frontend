@@ -1,37 +1,42 @@
-import { useEffect, useState } from 'react';
-
+// import { useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import EventsList from '../components/EventsList';
 
 function EventsPage() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [fetchedEvents, setFetchedEvents] = useState();
-  const [error, setError] = useState();
+  const events = useLoaderData();
 
-  useEffect(() => {
-    async function fetchEvents() {
-      setIsLoading(true);
-      const response = await fetch('http://localhost:8080/events');
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [fetchedEvents, setFetchedEvents] = useState();
+  // const [error, setError] = useState();
+    
+  // useEffect(() => {
+  //   async function fetchEvents() {
+  //     setIsLoading(true);
+  //     const response = await fetch('http://localhost:8080/events');
 
-      if (!response.ok) {
-        setError('Fetching events failed.');
-      } else {
-        const resData = await response.json();
-        console.log(resData)
-        setFetchedEvents(resData.events);
-      }
-      setIsLoading(false);
-    }
+  //     if (!response.ok) {
+  //       setError('Fetching events failed.');
+  //     } else {
+  //       const resData = await response.json();
+  //       console.log(resData)
+  //       setFetchedEvents(resData.events);
+  //     }
+  //     setIsLoading(false);
+  //   }
 
-    fetchEvents();
-  }, []);
+  //   fetchEvents();
+  // }, []);
+
+
   return (
-    <>
-      <div style={{ textAlign: 'center' }}>
-        {isLoading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
-      </div>
-      {!isLoading && fetchedEvents && <EventsList events={fetchedEvents} />}
-    </>
+    // <>
+    //   <div style={{ textAlign: 'center' }}>
+    //     {isLoading && <p>Loading...</p>}
+    //     {error && <p>{error}</p>}
+    //   </div>
+    //   {!isLoading && fetchedEvents && <EventsList events={fetchedEvents} />}
+    // </>
+    <EventsList events={events} />
   );
 }
 
