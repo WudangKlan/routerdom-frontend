@@ -24,7 +24,8 @@ export async function action({ request, params }) {
     body: JSON.stringify(eventData),
   });
 
-  console.log(response);
+  const ket = await response.json()
+  console.log(ket.message);
 
   if (!response.ok) {
     throw json({ message: "Could not save event." }, { status: 500 });
